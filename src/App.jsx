@@ -1,4 +1,4 @@
-
+// ✅ App.jsx (Frontend Root Component)
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "./components/Header";
@@ -21,13 +21,12 @@ const exerciseImages = {
 };
 
 function App() {
-  
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
   const [goal, setGoal] = useState("Lose Weight");
- 
+  const [food, setFood] = useState("Veg");
   const [bmi, setBmi] = useState(null);
   const [category, setCategory] = useState("");
   const [plan, setPlan] = useState("");
@@ -47,20 +46,24 @@ function App() {
     setCategory("");
 
     try {
-      const bmiResponse = await axios.post("https://fittrack-backend-ftz6.onrender.com/api/bmi", {
-        height,
-        weight,
-      });
+      const bmiResponse = await axios.post(
+        "https://fittrack-backend-ftz6.onrender.com/api/bmi",
+        { height, weight }
+      );
       const calculatedBmi = parseFloat(bmiResponse.data.bmi);
       setBmi(calculatedBmi);
       setCategory(calculateBMICategory(calculatedBmi));
 
-      const planResponse = await axios.post("https://fittrack-backend-ftz6.onrender.com/api/plan", {
-        bmi: calculatedBmi,
-        age,
-        gender,
-        goal,
-      });
+      const planResponse = await axios.post(
+        "https://fittrack-backend-ftz6.onrender.com/api/plan",
+        {
+          bmi: calculatedBmi,
+          age,
+          gender,
+          goal,
+          food,
+        }
+      );
 
       setPlan(planResponse.data.plan);
     } catch (err) {
@@ -72,32 +75,40 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8 border border-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-100 to-blue-200 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-10 border border-blue-200">
+        {/* 🔷 1. Hero Header */}
         <Header />
-        <p className="text-center mb-4 text-gray-600">
-          Get your BMI and an AI-generated health plan
+        <p className="text-center mb-6 text-gray-700 text-lg italic">
+          Your AI-powered personal health assistant
         </p>
 
+        {/* 🔷 2. Form Inputs */}
         <BMIForm
           height={height}
           weight={weight}
           age={age}
           gender={gender}
           goal={goal}
+          food={food}
           setHeight={setHeight}
           setWeight={setWeight}
           setAge={setAge}
           setGender={setGender}
           setGoal={setGoal}
+          setFood={setFood}
           handleSubmit={handleSubmit}
         />
 
+        {/* 🔷 3. Loading + BMI Result */}
         {loading && <Loader />}
         {!loading && bmi && <BMIResult bmi={bmi} category={category} />}
+
+        {/* 🔷 4. Health Plan with Tabs */}
         {!loading && plan && (
           <>
             <HealthPlan plan={plan} />
+            {/* 🔷 5. Exercise Cards Grid */}
             <ExerciseCards plan={plan} exerciseImages={exerciseImages} />
           </>
         )}
