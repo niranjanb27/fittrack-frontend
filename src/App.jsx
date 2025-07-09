@@ -5,19 +5,19 @@ import Header from "./components/Header";
 import BMIForm from "./components/BMIForm";
 import Loader from "./components/Loader";
 import BMIResult from "./components/BMIResult";
-import HealthPlan from "./components/HealthPlan";
+import TabbedHealthPlan from "./components/HealthPlan";
 import ExerciseCards from "./components/ExerciseCards";
 
 const exerciseImages = {
   "Push-ups": "/images/pushup.jpg",
-  "Plank": "/images/plank.jpg",
-  "Squats": "/images/squat.jpg",
+  Plank: "/images/plank.jpg",
+  Squats: "/images/squat.jpg",
   "Jumping Jacks": "/images/jumping-jacks.jpg",
-  "Lunges": "/images/lunges.jpg",
+  Lunges: "/images/lunges.jpg",
   "Sit-ups": "/images/situps.jpg",
-  "jog": "/images/jogging.jpg",
-  "yoga": "/images/yoga.jpg",
-  "swim": "/images/swim.jpg",
+  jog: "/images/jogging.jpg",
+  yoga: "/images/yoga.jpg",
+  swim: "/images/swim.jpg",
 };
 
 function App() {
@@ -65,7 +65,9 @@ function App() {
         }
       );
 
-      setPlan(planResponse.data.plan);
+      const planText = planResponse.data.plan;
+      console.log("Generated Plan:\n", planText);
+      setPlan(planText);
     } catch (err) {
       console.error("Error:", err);
       setPlan("❌ Error generating plan. Please try again.");
@@ -102,12 +104,16 @@ function App() {
 
         {/* 🔷 3. Loading + BMI Result */}
         {loading && <Loader />}
-        {!loading && bmi && <BMIResult bmi={bmi} category={category} />}
+        {!loading && bmi && (
+          <div className="mt-6">
+            <BMIResult bmi={bmi} category={category} />
+          </div>
+        )}
 
         {/* 🔷 4. Health Plan with Tabs */}
         {!loading && plan && (
           <>
-            <HealthPlan plan={plan} />
+            <TabbedHealthPlan plan={plan} />
             {/* 🔷 5. Exercise Cards Grid */}
             <ExerciseCards plan={plan} exerciseImages={exerciseImages} />
           </>
