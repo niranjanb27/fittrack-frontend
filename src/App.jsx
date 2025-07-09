@@ -21,11 +21,13 @@ const exerciseImages = {
 };
 
 function App() {
+  
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
   const [goal, setGoal] = useState("Lose Weight");
+ 
   const [bmi, setBmi] = useState(null);
   const [category, setCategory] = useState("");
   const [plan, setPlan] = useState("");
