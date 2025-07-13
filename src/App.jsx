@@ -1,4 +1,3 @@
-// ✅ App.jsx (Frontend Root Component)
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "./components/Header";
@@ -6,18 +5,22 @@ import BMIForm from "./components/BMIForm";
 import Loader from "./components/Loader";
 import BMIResult from "./components/BMIResult";
 import TabbedHealthPlan from "./components/HealthPlan";
+import FoodCards from "./components/FoodCards";
 import ExerciseCards from "./components/ExerciseCards";
 
 const exerciseImages = {
-  "Push-ups": "/images/pushup.jpg",
-  Plank: "/images/plank.jpg",
-  Squats: "/images/squat.jpg",
-  "Jumping Jacks": "/images/jumping-jacks.jpg",
-  Lunges: "/images/lunges.jpg",
-  "Sit-ups": "/images/situps.jpg",
-  jog: "/images/jogging.jpg",
-  yoga: "/images/yoga.jpg",
-  swim: "/images/swim.jpg",
+  "Push-ups": "./images/exercise/pushup.jpg",
+  Plank: "./images/exercise/plank.jpg",
+  Squats: "./images/exercise/squat.jpg",
+  "Jumping Jacks": "./images/exercise/jumping-jacks.jpg",
+  Lunges: "./images/exercise/lunges.jpg",
+  "Sit-ups": "./images/exercise/situps.jpg",
+  jog: "./images/exercise/jogging.jpg",
+  yoga: "./images/exercise/yoga.jpg",
+  swim: "./images/exercise/swim.jpg",
+  "cycling" : "./images/exercise/cycling.jpg",
+  "Bench Press": "./images/exercise/benchpress.jpg",
+  "Shoulder Press":"./images/exercise/shoulderpress.jpg"
 };
 
 function App() {
@@ -77,8 +80,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-blue-200 flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-10 border border-blue-200">
+    <div className="min-h-screen w-full bg-gradient-to-br from-green-200 to-blue-200  flex items-center justify-center overflow-y-auto">
+      <div className="w-full shadow-2xl p-10 border border-green-100">
         {/* 🔷 1. Hero Header */}
         <Header />
         <p className="text-center mb-6 text-gray-700 text-lg italic">
@@ -110,12 +113,13 @@ function App() {
           </div>
         )}
 
-        {/* 🔷 4. Health Plan with Tabs */}
+        {/* 🔷 4. Health Plan Tabs + Cards */}
         {!loading && plan && (
           <>
-            <TabbedHealthPlan plan={plan} />
-            {/* 🔷 5. Exercise Cards Grid */}
+          <FoodCards plan={plan} />
             <ExerciseCards plan={plan} exerciseImages={exerciseImages} />
+            <TabbedHealthPlan plan={plan} />
+            
           </>
         )}
       </div>
