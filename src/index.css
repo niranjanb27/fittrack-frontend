@@ -45,3 +45,27 @@
   /*animation-delay: 4s;  after brand */
 }
 
+@keyframes ecgLoaderPulse {
+  0% {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 150;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.ecg-loader polyline {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: ecgLoaderPulse 2s ease-in-out infinite;
+}
+

@@ -6,7 +6,7 @@ const Header = () => (
     
     {/* Blue ECG - animates first */}
     <svg
-      className="w-32 md:w-48 h-16 md:h-20 text-blue-900 ecg-line-blue mt-5"
+      className="w-32 md:w-48 h-16 md:h-20 text-green-500 ecg-line-blue mt-5"
       viewBox="0 0 100 50"
       fill="none"
       stroke="currentColor"
@@ -19,15 +19,15 @@ const Header = () => (
 
     {/* Brand name - appears after delay */}
     <div className="flex items-end space-x-1 brand-animation text-center">
-      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900 italic">F</h1>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-3 text-blue-900 italic">IT</h1>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 text-green-700 italic">T</h1>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-3 text-green-700 italic">RACK</h1>
+      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-blue-500 italic">F</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-3 text-blue-500 italic">IT</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 text-green-500 italic">T</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-3 text-green-500 italic">RACK</h1>
     </div>
 
     {/* Green ECG - animates last */}
     <svg
-      className="w-32 md:w-48 h-16 md:h-20 text-green-700 ecg-line-green mt-5"
+      className="w-32 md:w-48 h-16 md:h-20 text-blue-500 ecg-line-green mt-5"
       viewBox="0 0 100 50"
       fill="none"
       stroke="currentColor"
