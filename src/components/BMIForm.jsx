@@ -48,7 +48,7 @@ const BMIForm = ({ height, weight, age, gender, goal, setHeight, setWeight, setA
 
     <button
       type="submit"
-      className="w-full bg-blue-900 text-white py-2 rounded-xl focus:bg-green-700 transition duration-200"
+      className="w-full bg-blue-900 text-white py-2 rounded-xl hover:bg-green-700 focus:bg-green-700 transition duration-200"
     >
       Calculate BMI and Generate Health Plan
     </button>

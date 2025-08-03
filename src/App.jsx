@@ -80,8 +80,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-green-200 to-blue-200  flex items-center justify-center overflow-y-auto">
-      <div className="w-full shadow-2xl p-10 border border-green-100">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-gray-300  flex items-center justify-center overflow-y-auto">
+      <div className="w-full p-10 ">
         {/* 🔷 1. Hero Header */}
         <Header />
         <p className="text-center mb-6 text-gray-700 text-lg italic">

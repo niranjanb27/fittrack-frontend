@@ -2,3 +2,46 @@
 .input {
   @apply w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-900 ;
 }
+/* ECG Draw Animation */
+@keyframes ecgDraw {
+  0% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ECG Blue - animates first */
+.ecg-line-blue polyline {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: ecgDraw 4s ease infinite;
+}
+
+/* Brand Name - fades in second */
+@keyframes fadeInBrand {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-animation {
+  opacity: 0;
+  animation: fadeInBrand 1s ease forwards;
+  animation-delay: 2s; /* after ECG blue */
+}
+
+/* ECG Green - animates last */
+.ecg-line-green polyline {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: ecgDraw 4s ease infinite;
+  /*animation-delay: 4s;  after brand */
+}
+
