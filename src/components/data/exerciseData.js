@@ -1,0 +1,26 @@
+// src/data/exerciseData.js
+
+export const exerciseData = [
+  { name: "Push-ups", image: "./images/exercise/pushup.jpg", tip: "Do slowly with proper form." },
+  { name: "Plank", image: "./images/exercise/plank.jpg", tip: "Hold core tight. 30-60 sec." },
+  { name: "Squats", image: "./images/exercise/squat.jpg", tip: "Keep knees behind toes." },
+  { name: "Jumping Jacks", image: "./images/exercise/jumping-jacks.jpg", tip: "Great cardio exercise." },
+  { name: "Lunges", image: "./images/exercise/lunges.jpg", tip: "Alternate legs slowly." },
+  { name: "Sit-ups", image: "./images/exercise/situps.jpg", tip: "Focus on abdominal muscles." },
+  { name: "Jogging", image: "./images/exercise/jogging.jpg", tip: "Maintain steady pace for 20 min." },
+  { name: "Yoga", image: "./images/exercise/yoga.jpg", tip: "Stretch and relax muscles." },
+  { name: "Swimming", image: "./images/exercise/swim.jpg", tip: "Low impact, full body workout." },
+  { name: "Cycling", image: "./images/exercise/cycling.jpg", tip: "Great for legs and cardio." },
+  { name: "Bench Press", image: "./images/exercise/benchpress.jpg", tip: "Use safe weights and spotter." },
+  { name: "Shoulder Press", image: "./images/exercise/shoulderpress.jpg", tip: "Keep back straight." },
+  { name: "Dumbbell Curls", image: "/images/exercise/dumbell-curls.jpeg", tip: "Slow controlled movement for biceps." },
+  { name: "Deadlifts", image: "./images/exercise/deadlifts.jpg", tip: "Keep back straight, lift safely." },
+  { name: "Resistance Bands", image: "./images/exercise/resistance-bands.jpg", tip: "Use proper tension and form." },
+  { name: "Mountain Climbers", image: "./images/exercise/mountain-climbers.jpg", tip: "Engage core, move steadily." },
+  { name: "Burpees", image: "./images/exercise/burpee.jpg", tip: "Full-body exercise, moderate speed." },
+  { name: "Chair Exercises", image: "./images/exercise/chair-exercise.jpg", tip: "Low-impact, good for beginners." },
+  { name: "Step-ups", image: "./images/exercise/step-ups.jpg", tip: "Use stable surface, alternate legs." },
+  { name: "Walking", image: "./images/exercise/walking.jpg", tip: "Brisk walk for 20–30 min daily." },
+  { name: "Light Resistance", image: "./images/exercise/light-resistance.jpg", tip: "Use proper tension and form." },
+  { name: "Stair Climbing", image: "./images/exercise/stair-climbing.jpeg", tip: "Exercise safely!" },
+];

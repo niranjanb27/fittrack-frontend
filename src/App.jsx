@@ -1,125 +1,87 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Header from "./components/Header";
 import BMIForm from "./components/BMIForm";
-import Loader from "./components/Loader";
 import BMIResult from "./components/BMIResult";
-import TabbedHealthPlan from "./components/HealthPlan";
+import DownloadPDF from "./components/DownloadPDF";
 import FoodCards from "./components/FoodCards";
 import ExerciseCards from "./components/ExerciseCards";
-
-const exerciseImages = {
-  "Push-ups": "./images/exercise/pushup.jpg",
-  Plank: "./images/exercise/plank.jpg",
-  Squats: "./images/exercise/squat.jpg",
-  "Jumping Jacks": "./images/exercise/jumping-jacks.jpg",
-  Lunges: "./images/exercise/lunges.jpg",
-  "Sit-ups": "./images/exercise/situps.jpg",
-  jog: "./images/exercise/jogging.jpg",
-  yoga: "./images/exercise/yoga.jpg",
-  swim: "./images/exercise/swim.jpg",
-  "cycling" : "./images/exercise/cycling.jpg",
-  "Bench Press": "./images/exercise/benchpress.jpg",
-  "Shoulder Press":"./images/exercise/shoulderpress.jpg"
-};
+import { calculateBMICategory, generatePlan, calculateWeightChange } from "./utils/planGenerator";
 
 function App() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("Male");
-  const [goal, setGoal] = useState("Lose Weight");
-  const [food, setFood] = useState("Veg");
   const [bmi, setBmi] = useState(null);
   const [category, setCategory] = useState("");
-  const [plan, setPlan] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [plan, setPlan] = useState(null);
+  const [weightChange, setWeightChange] = useState(null);
 
-  const calculateBMICategory = (bmi) => {
-    if (bmi < 18.5) return "Underweight";
-    else if (bmi < 25) return "Normal";
-    else if (bmi < 30) return "Overweight";
-    else return "Obese";
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setPlan("");
-    setCategory("");
+    if (!height || !weight) return alert("Enter height & weight");
 
-    try {
-      const bmiResponse = await axios.post(
-        "https://fittrack-backend-ftz6.onrender.com/api/bmi",
-        { height, weight }
-      );
-      const calculatedBmi = parseFloat(bmiResponse.data.bmi);
-      setBmi(calculatedBmi);
-      setCategory(calculateBMICategory(calculatedBmi));
+    const heightM = height / 100;
+    const bmiValue = parseFloat((weight / (heightM * heightM)).toFixed(1));
+    setBmi(bmiValue);
 
-      const planResponse = await axios.post(
-        "https://fittrack-backend-ftz6.onrender.com/api/plan",
-        {
-          bmi: calculatedBmi,
-          age,
-          gender,
-          goal,
-          food,
-        }
-      );
+    const cat = calculateBMICategory(bmiValue);
+    setCategory(cat);
 
-      const planText = planResponse.data.plan;
-      console.log("Generated Plan:\n", planText);
-      setPlan(planText);
-    } catch (err) {
-      console.error("Error:", err);
-      setPlan("❌ Error generating plan. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    const generatedPlan = generatePlan(bmiValue);
+    setPlan(generatedPlan);
+
+    const change = calculateWeightChange(bmiValue, weight, height);
+    setWeightChange(change);
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-gray-300  flex items-center justify-center overflow-y-auto">
-      <div className="w-full p-10 ">
-        {/* 🔷 1. Hero Header */}
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center overflow-y-auto">
+      <div className="w-full p-10">
         <Header />
         <p className="text-center mb-6 text-gray-700 text-lg italic">
-          Your AI-powered personal health assistant
+          Your Personal Health Assistant (Static with Hover Tips + Chart)
         </p>
 
-        {/* 🔷 2. Form Inputs */}
         <BMIForm
           height={height}
           weight={weight}
-          age={age}
-          gender={gender}
-          goal={goal}
-          food={food}
           setHeight={setHeight}
           setWeight={setWeight}
-          setAge={setAge}
-          setGender={setGender}
-          setGoal={setGoal}
-          setFood={setFood}
           handleSubmit={handleSubmit}
         />
 
-        {/* 🔷 3. Loading + BMI Result */}
-        {loading && <Loader />}
-        {!loading && bmi && (
-          <div className="mt-6">
+        {bmi && (
+          <div className="text-center mt-4">
             <BMIResult bmi={bmi} category={category} />
+            {weightChange && (
+              <div className="mt-4 text-center">
+                {weightChange.type === "gain" ? (
+                  <p className="text-blue-700 font-semibold">
+                    👉 You need to gain <b>{weightChange.amount} kg</b> to reach Normal BMI.
+                  </p>
+                ) : (
+                  <p className="text-red-700 font-semibold">
+                    👉 You need to lose <b>{weightChange.amount} kg</b> to reach Normal BMI.
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
 
-        {/* 🔷 4. Health Plan Tabs + Cards */}
-        {!loading && plan && (
+        {plan && (
           <>
-          <FoodCards plan={plan} />
-            <ExerciseCards plan={plan} exerciseImages={exerciseImages} />
-            <TabbedHealthPlan plan={plan} />
-            
+            <h2 className="mt-6 text-xl font-bold">Diet Plan</h2>
+            <FoodCards plan={plan} />
+
+            <h2 className="mt-6 text-xl font-bold">Exercise Plan</h2>
+            <ExerciseCards plan={plan} />
+
+            <DownloadPDF
+              bmi={bmi}
+              category={category}
+              weightChange={weightChange}
+              plan={plan}
+            />
           </>
         )}
       </div>

@@ -1,0 +1,27 @@
+// src/data/foodData.js
+
+export const foodData = [
+  { name: "Oats", image: "./images/food/Oats.jpg", tip: "Great for energy & fiber. Eat in breakfast." },
+  { name: "Banana", image: "./images/food/fruits.jpg", tip: "Rich in potassium. Eat 1 medium banana." },
+  { name: "Chicken", image: "./images/food/chicken.jpg", tip: "Lean protein source. 100g per meal." },
+  { name: "Nuts & Seeds", image: "./images/food/nuts & seeds.jpg", tip: "Healthy fats. 20-30g per day." },
+  { name: "Nuts", image: "./images/food/nuts.jpg", tip: "Healthy fats. 20-30g per day." },
+  { name: "Milk", image: "./images/food/milk.jpg", tip: "Calcium & protein. 1 glass per day." },
+  { name: "Eggs", image: "./images/food/eggs.jpg", tip: "Protein-rich. 1-2 eggs per meal." },
+  { name: "Peanut Butter", image: "./images/food/peanut-butter.jpg", tip: "High-calorie healthy spread. 1 tbsp per meal." },
+  { name: "Avocado", image: "./images/food/avocado.jpg", tip: "Healthy fats & nutrients. Half per meal." },
+  { name: "Cheese", image: "./images/food/cheese.jpg", tip: "Calcium & protein. Use moderate portions." },
+  { name: "Smoothie", image: "./images/food/smoothie.jpg", tip: "Blend fruits & milk for vitamins." },
+  { name: "Salad", image: "./images/food/salad.jpg", tip: "Low calorie, high nutrients. Add olive oil." },
+  { name: "Rice", image: "./images/food/rice.jpg", tip: "Good carb source. 1 cup cooked." },
+  { name: "Brown Rice", image: "./images/food/brown-rice.jpg", tip: "Whole grain carb. 1 cup per meal." },
+  { name: "Vegetables", image: "./images/food/vegetables.jpg", tip: "Include 2 cups daily." },
+  { name: "Tofu", image: "./images/food/tofu.jpg", tip: "Plant-based protein. 100g per meal." },
+  { name: "Beans", image: "./images/food/beans.jpg", tip: "Protein & fiber. 1/2 cup per meal." },
+  { name: "Fruits", image: "./images/food/fruits.jpg", tip: "Vitamins & fiber. Eat 1-2 servings." },
+  { name: "Green Tea", image: "./images/food/green-tea.jpg", tip: "Boosts metabolism. 1 cup per day." },
+  { name: "Yogurt", image: "./images/food/yogurt.jpg", tip: "Protein & probiotics. 1 cup daily." },
+  { name: "Fats", image: "./images/food/fats.jpg", tip: "Use healthy oils in moderation." },
+  { name: "Fish", image: "./images/food/fish.jpg", tip: "Rich in omega-3. 100-150g per meal." },
+  { name: "Low-fat Yogurt", image: "./images/food/yogurt.jpg", tip: "Eat Healthy" },
+];
