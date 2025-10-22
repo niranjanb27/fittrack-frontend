@@ -38,7 +38,7 @@ function App() {
       <div className="w-full p-10">
         <Header />
         <p className="text-center mb-6 text-gray-700 text-lg italic">
-          Your Personal Health Assistant (Static with Hover Tips + Chart)
+          Your Personal Health Assistant
         </p>
 
         <BMIForm
